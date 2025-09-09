@@ -1,83 +1,94 @@
-import React from 'react';
-import Group1 from '../../../assets/Groups/mail.png';
-import Group2 from '../../../assets/Groups/phone.png';
-import Group3 from '../../../assets/Groups/service.png';
-import Group4 from '../../../assets/Groups/linkdin.png';
-import Group5 from '../../../assets/Groups/instagram.png';
-import Group6 from '../../../assets/Groups/service.png';
+import React from "react";
+import Group1 from "../../../assets/Groups/mail.png";
+import Group2 from "../../../assets/Groups/phone.png";
+import Group3 from "../../../assets/Groups/service.png";
+import Group4 from "../../../assets/Groups/linkdin.png";
+import Group5 from "../../../assets/Groups/instagram.png";
+import Group6 from "../../../assets/Groups/service.png";
 
 const Hero = () => {
   return (
-    <section className="h-[510px] py-28 px-4 sm:px-6 lg:px-8 bg-red-800 ml-5 mr-5 rounded-b-2xl">
+    <section className="h-[500px] transition-all max-w-7xl mx-auto py-28 px-4 sm:px-6 lg:px-8 bg-red-800 rounded-b-3xl lg:rounded-b-2xl">
       <div className="max-w-8xl mx-auto flex flex-col md:flex-row gap-8">
         {/* Left side - Text content */}
-        <div className="md:w-[673px] h-[150px] mt-4 ml-20">
-          <h1 className="text-6xl font-bold text-white mb-8">Pricing</h1>
-          <div className="text-2xl text-white mb-6">
+        <div className="flex-1 mt-4 md:ml-10 transition-all lg:ml-20">
+          <h1 className="text-5xl font-bold text-white mb-4">Pricing</h1>
+          <div className="text-lg text-white mb-6">
             <p>
-              Choose the plan that fits your restaurant’s needs. From essential order and payment tools to advanced features like inventory and staff management, our flexible pricing helps your business grow smoothly with reliable support.
+              Choose the plan that fits your restaurant’s needs. From essential
+              order and payment tools to advanced features like inventory and
+              staff management, our flexible pricing helps your business grow
+              smoothly with reliable support.
             </p>
           </div>
         </div>
 
         {/* Right side - 6 individually customized columns */}
-        <div className="md:w-1/2 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 mr-16">
-          
-          {/* Column 1 - Customize this independently */}
+        <div className="flex-1 lg:flex-1 hidden lg:grid grid-cols-6 gap-4 mr-16">
+          {/* Column 1 */}
           <div className="flex flex-col items-center">
             <div className="flex flex-col items-center -mt-[112px] ml-[300px]">
-              {/* Vertical line */}
               <div className="w-0.5 h-24 bg-white"></div>
-              {/* Small square */}
               <div className="w-2 h-3 bg-white my-2 -mt-1"></div>
-              {/* Hollow circle with image */}
               <div className="relative w-[70px] h-[70px] -mt-2">
-                <div 
+                <div
                   className="absolute inset-0 rounded-full border-[5px] border-white"
                   style={{
-                    boxShadow: 'inset 0 0 10px rgba(255, 255, 255, 0.8)'
+                    boxShadow: "inset 0 0 10px rgba(255, 255, 255, 0.8)",
                   }}
                 ></div>
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <img src={Group1} alt="Easy Ordering" className="w-8 object-cover" />
+                  <img
+                    src={Group1}
+                    alt="Easy Ordering"
+                    className="w-8 object-cover"
+                  />
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Column 2 - Different styling */}
+          {/* Column 2 */}
           <div className="flex flex-col items-center">
             <div className="flex flex-col items-center -mt-[112px] ml-[250px]">
               <div className="w-0.5 h-64 bg-white"></div>
               <div className="w-2 h-3 bg-white"></div>
               <div className="relative w-[70px] h-[70px]">
-                <div 
+                <div
                   className="absolute inset-0 rounded-full border-[5px] border-white"
                   style={{
-                    boxShadow: 'inset 0 0 10px rgba(255, 255, 255, 0.8)'
+                    boxShadow: "inset 0 0 10px rgba(255, 255, 255, 0.8)",
                   }}
                 ></div>
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <img src={Group2} alt="Inventory Mgmt" className="w-4 object-contain mr-1" />
+                  <img
+                    src={Group2}
+                    alt="Inventory Mgmt"
+                    className="w-4 object-contain mr-1"
+                  />
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Column 3 - Another variation */}
+          {/* Column 3 */}
           <div className="flex flex-col items-center">
             <div className="flex flex-col items-center -mt-[112px] ml-[200px]">
               <div className="w-0.5 h-48 bg-white"></div>
               <div className="w-2 h-3 bg-white"></div>
               <div className="relative w-14 h-14">
-                <div 
+                <div
                   className="absolute inset-0 rounded-full border-[5px] border-white"
                   style={{
-                    boxShadow: 'inset 0 0 10px rgba(255, 255, 255, 0.8)'
+                    boxShadow: "inset 0 0 10px rgba(255, 255, 255, 0.8)",
                   }}
                 ></div>
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <img src={Group3} alt="Real-time Analytics" className="w-6 object-cover" />
+                  <img
+                    src={Group3}
+                    alt="Real-time Analytics"
+                    className="w-6 object-cover"
+                  />
                 </div>
               </div>
             </div>
@@ -89,14 +100,18 @@ const Hero = () => {
               <div className="w-0.5 h-80 bg-white"></div>
               <div className="w-2 h-3 bg-white"></div>
               <div className="relative w-[70px] h-[70px]">
-                <div 
+                <div
                   className="absolute inset-0 rounded-full border-[5px] border-white"
                   style={{
-                    boxShadow: 'inset 0 0 10px rgba(255, 255, 255, 0.8)'
+                    boxShadow: "inset 0 0 10px rgba(255, 255, 255, 0.8)",
                   }}
                 ></div>
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <img src={Group4} alt="Staff Management" className="w-7 object-contain" />
+                  <img
+                    src={Group4}
+                    alt="Staff Management"
+                    className="w-7 object-contain"
+                  />
                 </div>
               </div>
             </div>
@@ -108,14 +123,18 @@ const Hero = () => {
               <div className="w-0.5 h-56 bg-white"></div>
               <div className="w-2 h-3 bg-white my-2 -mt-3"></div>
               <div className="relative w-14 h-14 -mt-2">
-                <div 
+                <div
                   className="absolute inset-0 rounded-full border-[5px] border-white"
                   style={{
-                    boxShadow: 'inset 0 0 10px rgba(255, 255, 255, 0.8)'
+                    boxShadow: "inset 0 0 10px rgba(255, 255, 255, 0.8)",
                   }}
                 ></div>
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <img src={Group5} alt="Customer Loyalty" className="w-6 object-cover" />
+                  <img
+                    src={Group5}
+                    alt="Customer Loyalty"
+                    className="w-6 object-cover"
+                  />
                 </div>
               </div>
             </div>
@@ -127,19 +146,22 @@ const Hero = () => {
               <div className="w-0.5 h-[90px] bg-white"></div>
               <div className="w-2 h-3 bg-white -mt-1"></div>
               <div className="relative w-[70px] h-[70px]">
-                <div 
+                <div
                   className="absolute inset-0 rounded-full border-[5px] border-white"
                   style={{
-                    boxShadow: 'inset 0 0 10px rgba(255, 255, 255, 0.8)'
+                    boxShadow: "inset 0 0 10px rgba(255, 255, 255, 0.8)",
                   }}
                 ></div>
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <img src={Group6} alt="Multi-location" className="w-8 object-contain" />
+                  <img
+                    src={Group6}
+                    alt="Multi-location"
+                    className="w-8 object-contain"
+                  />
                 </div>
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </section>
