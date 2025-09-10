@@ -1,14 +1,62 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import RestaurantImage from "../../../assets/img/Restaurant.png";
-import { FaCheck } from "react-icons/fa"; // Import check icon from react-icons
+import { FaCheck } from "react-icons/fa";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const RestaurantSoftware = () => {
+  const featuresRef = useRef([]);
+  const imageRef = useRef(null);
+
+  useEffect(() => {
+    // Animate Features (Left Side)
+    featuresRef.current.forEach((feature, index) => {
+      if (feature) {
+        gsap.fromTo(
+          feature,
+          { y: -100, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            delay: index * 0.2, // stagger each feature
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: feature,
+              start: "top 80%",
+            },
+          }
+        );
+      }
+    });
+
+    // Animate Image (Right Side)
+    if (imageRef.current) {
+      gsap.fromTo(
+        imageRef.current,
+        { y: 50, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: imageRef.current,
+            start: "top 80%",
+          },
+        }
+      );
+    }
+  }, []);
+
   return (
-    <div
+    <divv
       className="py-16 px-4 sm:px-6 lg:px-8"
       style={{ backgroundColor: "rgb(248, 245, 240)" }}
     >
-      <div className="max-w-7xl my-10 mx-auto">
+      <div className="max-w-7xl my-10 mx-auto px-4">
         {/* Header Section */}
         <div className="text-center mb-12">
           <h1 className="text-3xl sm:text-[2.5rem] font-bold text-gray-900 mb-4">
@@ -20,14 +68,17 @@ const RestaurantSoftware = () => {
           </p>
         </div>
 
-        {/* Content Row - Features Left, Image Right */}
-        <div className="flex flex-col-reverse lg:flex-row items-center gap-12 ml-0 lg:ml-32">
-          {/* Left Side - Features Grid with Red Circles */}
+        {/* Content Row */}
+        <div className="flex flex-col-reverse lg:flex-row items-center gap-12 ">
+          {/* Left Features */}
           <div className="lg:w-1/2">
             <div className="flex flex-col gap-12">
               {/* Feature 1 */}
-              <div className="flex items-start gap-6">
-                <div className="w-20 h-20 bg-red-800 rounded-full flex items-center justify-center flex-shrink-0">
+              <div
+                className="flex items-start gap-6"
+                ref={(el) => (featuresRef.current[0] = el)}
+              >
+                <div className="w-20 h-20  bg-red-800 rounded-full flex items-center justify-center flex-shrink-0">
                   <FaCheck className="text-white text-2xl" />
                 </div>
                 <div>
@@ -42,8 +93,11 @@ const RestaurantSoftware = () => {
               </div>
 
               {/* Feature 2 */}
-              <div className="flex items-start gap-6">
-                <div className="w-20 h-20 bg-red-800 rounded-full flex items-center justify-center flex-shrink-0">
+              <div
+                className="flex items-start gap-6"
+                ref={(el) => (featuresRef.current[1] = el)}
+              >
+                <div className="md:w-20 md:h-20 w-[4.5rem] h-[4.5rem] bg-red-800 rounded-full flex items-center justify-center flex-shrink-0">
                   <FaCheck className="text-white text-2xl" />
                 </div>
                 <div>
@@ -58,8 +112,11 @@ const RestaurantSoftware = () => {
               </div>
 
               {/* Feature 3 */}
-              <div className="flex items-start gap-6">
-                <div className="w-20 h-20 bg-red-800 rounded-full flex items-center justify-center flex-shrink-0">
+              <div
+                className="flex items-start gap-6"
+                ref={(el) => (featuresRef.current[2] = el)}
+              >
+                <div className="md:w-20 md:h-20 w-[4.5rem] h-[4.5rem] bg-red-800 rounded-full flex items-center justify-center flex-shrink-0">
                   <FaCheck className="text-white text-2xl" />
                 </div>
                 <div>
@@ -75,8 +132,8 @@ const RestaurantSoftware = () => {
             </div>
           </div>
 
-          {/* Right Side - Image */}
-          <div className="lg:w-1/2 max-md:my-5">
+          {/* Right Image */}
+          <div className="lg:w-1/2 max-md:my-5" ref={imageRef}>
             <img
               src={RestaurantImage}
               alt="Restaurant Management Dashboard"
@@ -85,7 +142,7 @@ const RestaurantSoftware = () => {
           </div>
         </div>
       </div>
-    </div>
+    </divv>
   );
 };
 

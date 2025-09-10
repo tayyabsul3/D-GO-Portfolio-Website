@@ -35,13 +35,12 @@ const Testimonials = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [fade, setFade] = useState(true);
 
-  // Auto switch testimonial with fade effect
   useEffect(() => {
     const interval = setInterval(() => {
       handleNext();
-    }, 10000); // change every 10s
+    }, 5000);
     return () => clearInterval(interval);
-  }, [currentIndex]); // reset timer when index changes
+  }, [currentIndex]);
 
   const handleNext = () => {
     setFade(false);
@@ -81,12 +80,12 @@ const Testimonials = () => {
 
         {/* Testimonial Card */}
         <div
-          className={`bg-white my-16 rounded-lg shadow-lg overflow-hidden h-[350px] flex transition-opacity duration-700 ${
+          className={`bg-white my-16 rounded-lg shadow-lg overflow-hidden min-h-[350px] flex transition-opacity duration-700 ${
             fade ? "opacity-100" : "opacity-0"
           }`}
         >
           {/* Image */}
-          <div className="w-1/3 h-full">
+          <div className="w-1/2 sm:w-1/3 min-h-full">
             <img
               src={testimonial.image}
               alt={testimonial.name}
@@ -95,7 +94,7 @@ const Testimonials = () => {
           </div>
 
           {/* Content */}
-          <div className="w-2/3 p-6 flex flex-col justify-center">
+          <div className="w-2/3  p-6 flex flex-col justify-center">
             <div className="mb-2">
               <h3 className="font-bold text-gray-900 text-lg mb-1">
                 {testimonial.restaurant}

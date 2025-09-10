@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
+import gsap from "gsap";
 import restaurantImage from "../../../assets/img/img1.jpg";
 import OIP1 from "../../../assets/min-logo/OIP1.jpg";
 import OIP2 from "../../../assets/min-logo/OIP2.jpg";
@@ -6,15 +7,54 @@ import OIP3 from "../../../assets/min-logo/OIP3.jpg";
 import OIP4 from "../../../assets/min-logo/OIP4.jpg";
 
 const HeroSection = () => {
+  const sectionRef = useRef(null);
+  const textRef = useRef(null);
+  const logosRef = useRef([]);
+  const imageRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.from(textRef.current, {
+        opacity: 0,
+        x: -50,
+        duration: 1,
+        ease: "power3.out",
+      });
+
+      gsap.from(logosRef.current, {
+        opacity: 0,
+        scale: 0,
+        stagger: 0.2,
+        duration: 0.8,
+        ease: "back.out(1.7)",
+        delay: 0.5,
+      });
+
+      gsap.from(imageRef.current, {
+        opacity: 0,
+        x: 80,
+        duration: 1.2,
+        ease: "power3.out",
+        delay: 0.3,
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <div
-      className="relative "
+      ref={sectionRef}
+      className="relative"
       style={{ backgroundColor: "rgb(248, 245, 240)" }}
     >
-      <div className="max-w-7xl mx-auto ">
-        <div className="flex  max-md:py-5  ">
+      <div className="max-w-7xl mx-auto">
+        <div className="flex max-md:py-5">
           {/* Left side - Text content */}
-          <div className="flex-1 px-5  sm:pr-10 py-12 sm:py-16 lg:py-20 sm:ml-10">
+          <div
+            ref={textRef}
+            className="flex-1 px-5 sm:pr-10 py-12 sm:py-16 lg:py-20 sm:ml-10"
+          >
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold text-gray-900 leading-tight mb-8">
               Run your business,
               <br />
@@ -44,45 +84,29 @@ const HeroSection = () => {
             <div className="flex items-center gap-3">
               {/* Restaurant owner logos/images */}
               <div className="flex -space-x-3 cursor-pointer">
-                <img
-                  src={OIP1}
-                  alt="Restaurant Owner"
-                  className="w-10 h-10 rounded-full border-2 border-white"
-                />
-                <img
-                  src={OIP2}
-                  alt="Restaurant Owner"
-                  className="w-10 h-10 rounded-full border-2 border-white"
-                />
-                <img
-                  src={OIP3}
-                  alt="Restaurant Owner"
-                  className="w-10 h-10 rounded-full border-2 border-white"
-                />
-                <img
-                  src={OIP4}
-                  alt="Restaurant Owner"
-                  className="w-10 h-10 rounded-full border-2 border-white"
-                />
+                {[OIP1, OIP2, OIP3, OIP4].map((logo, i) => (
+                  <img
+                    key={i}
+                    ref={(el) => (logosRef.current[i] = el)}
+                    src={logo}
+                    alt="Restaurant Owner"
+                    className="w-10 h-10 rounded-full border-2 border-white"
+                  />
+                ))}
               </div>
 
-              <p className="text-gray-500">
+              <p className="text-gray-500 w-1/2">
                 Trusted by 2500+ Restaurant Owners
               </p>
             </div>
           </div>
 
           {/* Right side - Full height Image with overlay image */}
-          <div
-            className=" flex-1 max-md:hidden  max-h-[70vh]  "
-            //    className="lg:w-1/2 lg:absolute lg:right-0 lg:top-0 lg:h-full lg:overflow-hidden relative"
-          >
-            {/* Main image */}
+          <div ref={imageRef} className="flex-1 max-md:hidden max-h-[70vh]">
             <img
               src={restaurantImage}
               alt="Restaurant POS System"
-              className="w-full h-full rounded-l-3xl  object-cover object-center"
-              //   style={{ minHeight: "500px" }}
+              className="w-full h-full rounded-l-3xl object-cover object-center"
             />
           </div>
         </div>

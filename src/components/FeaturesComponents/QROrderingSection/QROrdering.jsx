@@ -3,7 +3,7 @@ import QRImage from "../../../assets/img/tableQR.jpg"; // Replace with your actu
 
 const QROrderingSection = () => {
   return (
-    <div className="max-w-7xl mx-auto p-8 pt-0 bg-white ">
+    <div className="max-w-7xl mx-auto px-4 md:p-8 pt-0 bg-white ">
       <div className="flex flex-col justify-center px-2 md:flex-row gap-8 items-center mt-20 mb-20">
         {" "}
         {/* Added items-center */}

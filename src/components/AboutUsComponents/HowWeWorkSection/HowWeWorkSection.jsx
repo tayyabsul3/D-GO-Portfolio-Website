@@ -1,12 +1,54 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import WhoWeAreImage from "../../../assets/Aboutus/Plate2.jpg"; // Import your image
 
+gsap.registerPlugin(ScrollTrigger);
+
 const HowWeAreSection = () => {
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const el = sectionRef.current;
+
+    // Animate Text
+    gsap.fromTo(
+      el.querySelector(".how-text"),
+      { opacity: 0, y: 50 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1.2,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: el,
+          start: "top 80%",
+        },
+      }
+    );
+
+    // Animate Image
+    gsap.fromTo(
+      el.querySelector(".how-image"),
+      { opacity: 0, y: 80 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1.2,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: el,
+          start: "top 80%",
+        },
+      }
+    );
+  }, []);
+
   return (
-    <div className="max-w-7xl mx-auto px-8 py-32">
+    <div ref={sectionRef} className="max-w-7xl mx-auto px-8 py-32">
       <div className="flex flex-col md:flex-row items-center gap-12">
-        {/* Text content on the right */}
-        <div className="md:w-1/2 ">
+        {/* Text content */}
+        <div className="md:w-1/2 how-text">
           <h1 className="text-4xl font-bold text-black mb-6">How We Work:</h1>
           <p className="text-base text-gray-800 leading-relaxed">
             Our system seamlessly integrates with your restaurant’s operations
@@ -21,8 +63,8 @@ const HowWeAreSection = () => {
           </p>
         </div>
 
-        {/* Image on the left */}
-        <div className="md:w-1/2 ">
+        {/* Image */}
+        <div className="md:w-1/2 how-image">
           <img
             src={WhoWeAreImage}
             alt="PlaceOS POS System"

@@ -1,12 +1,38 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import MenuManagementImage from "../../../assets/Roles/Role1.jpg";
 import UserRolesImage from "../../../assets/Roles/Role2.jpg";
-import BackgroundImage from "../../../assets/Roles/background.png"; // Add your background image path
+import BackgroundImage from "../../../assets/Roles/background.png";
 import { FaPhone, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 
+gsap.registerPlugin(ScrollTrigger);
+
 const MenuManagementSection = () => {
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.from(".gsap-animate", {
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%", // when section is 80% in viewport
+          toggleActions: "play none none reverse",
+        },
+        y: -100, // slide from top to bottom
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out",
+        stagger: 0.3,
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <div
+      ref={sectionRef}
       className="relative "
       style={{ background: "rgba(255, 253, 248, 0.85)" }}
     >
@@ -15,10 +41,10 @@ const MenuManagementSection = () => {
         <img
           src={BackgroundImage}
           alt="Background"
-          className="w-full h-full object-cover scale-y-150" // Zoom-out effect
+          className="w-full h-full object-cover scale-y-150"
           style={{
             transform: "scale(1.0)",
-            objectPosition: "center center", // Ensures image stays centered
+            objectPosition: "center center",
           }}
         />
         <div className="absolute inset-0"></div>
@@ -26,11 +52,9 @@ const MenuManagementSection = () => {
 
       {/* Content */}
       <div className="relative z-10 max-w-4xl mx-auto">
-        {" "}
-        {/* Semi-transparent background */}
         <div className="max-w-6xl mx-auto px-8 py-16">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
-            <div className=" border-2  w-full md:w-[350px]  border-red-800 rounded-xl bg-white bg-opacity-95">
+            <div className="gsap-animate border-2  w-full md:w-[350px] border-red-800 rounded-xl bg-white bg-opacity-95">
               <div className="overflow-hidden  rounded-t-xl shadow-md">
                 <img
                   src={MenuManagementImage}
@@ -55,7 +79,7 @@ const MenuManagementSection = () => {
             </div>
 
             {/* Right Column - User Roles */}
-            <div className=" border-2   w-full md:w-[350px] border-red-800 rounded-xl bg-white bg-opacity-95">
+            <div className="gsap-animate border-2   w-full md:w-[350px] border-red-800 rounded-xl bg-white bg-opacity-95">
               <div className="overflow-hidden rounded-t-xl shadow-md">
                 <img
                   src={UserRolesImage}
@@ -79,11 +103,11 @@ const MenuManagementSection = () => {
             </div>
           </div>
         </div>
+
         {/* Contact Information - Horizontal layout */}
         <div className="max-w-8xl mx-auto px-8 py-8 border-t-2 border-gray-300 bg-opacity-95">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {/* Phone */}
-            <div className="flex items-center gap-4 ">
+            <div className="gsap-animate flex items-center gap-4 ">
               <div className="bg-red-800 p-3 rounded-full">
                 <FaPhone className="text-white text-xl" />
               </div>
@@ -92,8 +116,7 @@ const MenuManagementSection = () => {
               </p>
             </div>
 
-            {/* Email */}
-            <div className="flex items-center gap-4 ">
+            <div className="gsap-animate flex items-center gap-4 ">
               <div className="bg-red-800 p-3 rounded-full">
                 <FaEnvelope className="text-white text-xl" />
               </div>
@@ -102,8 +125,7 @@ const MenuManagementSection = () => {
               </p>
             </div>
 
-            {/* Location */}
-            <div className="flex items-center gap-4">
+            <div className="gsap-animate flex items-center gap-4">
               <div className="bg-red-800 p-3 rounded-full">
                 <FaMapMarkerAlt className="text-white text-xl" />
               </div>

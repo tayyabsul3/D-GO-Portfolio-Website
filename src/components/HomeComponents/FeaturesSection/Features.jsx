@@ -1,4 +1,7 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
 import Vector1 from "../../../assets/Features/Vector1.png";
 import Vector2 from "../../../assets/Features/Vector2.png";
 import Vector3 from "../../../assets/Features/Vector3.png";
@@ -6,7 +9,11 @@ import Vector4 from "../../../assets/Features/Vector4.png";
 import Vector5 from "../../../assets/Features/Vector5.png";
 import Vector6 from "../../../assets/Features/Vector6.png";
 
+gsap.registerPlugin(ScrollTrigger);
+
 const FeaturesSection = () => {
+  const cardsRef = useRef([]);
+
   const features = [
     {
       id: "qr-ordering",
@@ -76,6 +83,28 @@ const FeaturesSection = () => {
     },
   ];
 
+  useEffect(() => {
+    cardsRef.current.forEach((card, index) => {
+      if (card) {
+        gsap.fromTo(
+          card,
+          { y: 50, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            delay: index * 0.1,
+            scrollTrigger: {
+              trigger: card,
+              start: "top 75%",
+              toggleActions: "play none none reverse",
+            },
+          }
+        );
+      }
+    });
+  }, []);
+
   return (
     <div
       className="py-0.5 px-4 sm:px-6 lg:px-8"
@@ -83,12 +112,8 @@ const FeaturesSection = () => {
     >
       <div className="max-w-7xl mx-auto">
         {/* Header Section */}
-        <div className="text-center my-16 ">
-          {" "}
-          {/* Reduced margin */}
+        <div className="text-center my-16">
           <h1 className="text-3xl md:text-[2.5rem] font-bold text-gray-950 mb-4">
-            {" "}
-            {/* Reduced margin */}
             Everything Your Restaurant Needs
           </h1>
           <p className="text-[1.065rem] text-gray-700 font-normal max-w-3xl mx-auto">
@@ -99,57 +124,39 @@ const FeaturesSection = () => {
           </p>
         </div>
 
-        {/* Features Grid - 2 rows of 3 columns */}
-        <div className="grid grid-cols-1 mb-10  transition-all duration-300 sm:grid-cols-2 lg:grid-cols-3 gap-9">
-          {" "}
-          {/* Reduced gap */}
-          {features.map((feature) => (
+        {/* Features Grid */}
+        <div className="grid grid-cols-1 mb-10 sm:grid-cols-2 lg:grid-cols-3 gap-9">
+          {features.map((feature, index) => (
             <div
               key={feature.id}
-              id={feature.id}
-              className="p-0 bg-[#fbfaf7] rounded-xl shadow-lg h-auto flex flex-col"
+              ref={(el) => (cardsRef.current[index] = el)}
+              className="p-0 bg-[#fbfaf7] rounded-xl shadow-lg h-auto flex flex-col opacity-0"
             >
-              {/* Content area */}
               <div className="p-6 flex-grow">
-                {" "}
-                {/* Reduced padding */}
-                {/* Image container with colored border and background */}
                 <div
                   className={`mb-3 w-14 h-14 rounded-lg flex items-center justify-center border-2 ${feature.imageBorderColor} ${feature.imageBgColor}`}
                 >
-                  {" "}
-                  {/* Reduced size */}
                   <img
                     src={feature.image}
                     alt={feature.title}
                     className="w-9 h-9 object-contain"
                   />
                 </div>
-                {/* Text content */}
                 <div className="flex flex-col">
                   <h2 className="text-lg font-semibold text-gray-800 mb-1">
                     {feature.title}
-                  </h2>{" "}
-                  {/* Reduced text size */}
-                  <p className="text-gray-600 text-sm">
-                    {feature.description}
-                  </p>{" "}
-                  {/* Reduced text size */}
+                  </h2>
+                  <p className="text-gray-600 text-sm">{feature.description}</p>
                 </div>
               </div>
-
-              {/* Full-width bordered "See More" section */}
               <div
                 className={`border-t ${feature.borderColor} px-6 py-3 mt-auto rounded-b-xl`}
               >
-                {" "}
-                {/* Reduced padding */}
                 <a
                   href="#"
                   className="text-gray-900 font-medium hover:text-blue-800 flex items-center justify-between w-full"
                 >
-                  <span className="text-md">{feature.link}</span>{" "}
-                  {/* Reduced text size */}
+                  <span className="text-md">{feature.link}</span>
                 </a>
               </div>
             </div>
