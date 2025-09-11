@@ -52,7 +52,7 @@ const MenuManagementSection = () => {
 
       {/* Content */}
       <div className="relative z-10 max-w-4xl mx-auto">
-        <div className="max-w-6xl mx-auto px-8 py-16">
+        <div className="max-w-7xl mx-auto px-8 py-20 ">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
             <div className="gsap-animate border-2  w-full md:w-[350px] border-red-800 rounded-xl bg-white bg-opacity-95">
               <div className="overflow-hidden  rounded-t-xl shadow-md">

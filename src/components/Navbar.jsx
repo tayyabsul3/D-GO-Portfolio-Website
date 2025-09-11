@@ -5,18 +5,22 @@ import logo from "../assets/D-Go.png";
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [showNavbar, setShowNavbar] = useState(true);
+  const [showFixedNavbar, setShowFixedNavbar] = useState(false);
+  const [scrollDirection, setScrollDirection] = useState("up");
   const [lastScrollY, setLastScrollY] = useState(0);
 
   // Scroll handler
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > lastScrollY) {
-        // scrolling down
-        setShowNavbar(false);
+      if (window.scrollY > 500) {
+        if (window.scrollY > lastScrollY) {
+          setScrollDirection("down"); // scrolling down
+        } else {
+          setScrollDirection("up"); // scrolling up
+        }
+        setShowFixedNavbar(true);
       } else {
-        // scrolling up
-        setShowNavbar(true);
+        setShowFixedNavbar(false);
       }
       setLastScrollY(window.scrollY);
     };
@@ -24,78 +28,141 @@ const Navbar = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
-  return (
-    <nav
-      className={`${
-        lastScrollY > 500 && "fixed w-full  transition-all  z-20"
-      } bg-white  mx-auto transition-all static top-0 `}
+
+  // Reusable links
+  const NavLinks = ({ closeMenu }) => (
+    <>
+      <Link
+        to="/"
+        onClick={closeMenu}
+        className="text-red-800 px-3 py-2 text-[1.075rem] font-semibold hover:text-red-600 transition-colors"
+      >
+        Home
+      </Link>
+      <Link
+        to="/features"
+        onClick={closeMenu}
+        className="text-red-800 px-3 py-2 text-[1.075rem] font-semibold hover:text-red-600 transition-colors"
+      >
+        Features
+      </Link>
+      <Link
+        to="/pricing"
+        onClick={closeMenu}
+        className="text-red-800 px-3 py-2 text-[1.075rem] font-semibold hover:text-red-600 transition-colors"
+      >
+        Pricing
+      </Link>
+      <Link
+        to="/about"
+        onClick={closeMenu}
+        className="text-red-800 px-3 py-2 text-[1.075rem] font-semibold hover:text-red-600 transition-colors"
+      >
+        About Us
+      </Link>
+      <Link
+        to="/contact"
+        onClick={closeMenu}
+        className="text-red-800 px-3 py-2 text-[1.075rem] font-semibold hover:text-red-600 transition-colors"
+      >
+        Contact Us
+      </Link>
+    </>
+  );
+
+  const CtaButton = ({ closeMenu }) => (
+    <Link
+      to="/pricing#pricingsection"
+      onClick={closeMenu}
+      className="bg-red-800 hover:bg-red-700 text-white px-5 py-1 rounded-md text-lg font-medium transition-colors"
     >
-      <div className={`mx-auto sm:px-6 lg:px-8  max-w-7xl  `}>
-        <div className="flex justify-between items-center h-[75px]">
-          <div className="flex-shrink-0">
-            <Link to="/">
-              <img
-                src={logo}
-                alt="Company Logo"
-                className="h-[100px] w-auto object-contain sm:ml-10"
-              />
-            </Link>
-          </div>
+      Get Started
+    </Link>
+  );
 
-          <div className="hidden lg:flex flex-1 justify-center items-center gap-5">
-            <Link
-              to="/"
-              className="text-red-800 px-3 py-2 text-[1.075rem] font-semibold hover:text-red-600 transition-colors"
-            >
-              Home
-            </Link>
-            <Link
-              to="/features"
-              className="text-red-800 px-3 py-2 text-[1.075rem] font-semibold hover:text-red-600 transition-colors"
-            >
-              Features
-            </Link>
-            <Link
-              to="/pricing"
-              className="text-red-800 px-3 py-2 text-[1.075rem] font-semibold hover:text-red-600 transition-colors"
-            >
-              Pricing
-            </Link>
-            <Link
-              to="/about"
-              className="text-red-800 px-3 py-2 text-[1.075rem] font-semibold hover:text-red-600 transition-colors"
-            >
-              About Us
-            </Link>
-            <Link
-              to="/contact"
-              className="text-red-800 px-3 py-2 text-[1.075rem] font-semibold hover:text-red-600 transition-colors"
-            >
-              Contact Us
-            </Link>
-          </div>
+  return (
+    <>
+      {/* Original Navbar (Static) */}
+      <nav className="bg-white max-w-7xl mx-auto relative">
+        <div className="mx-auto sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-[75px]">
+            {/* Logo */}
+            <div className="flex-shrink-0">
+              <Link to="/">
+                <img
+                  src={logo}
+                  alt="Company Logo"
+                  className="h-[100px] w-auto object-contain sm:ml-10"
+                />
+              </Link>
+            </div>
 
-          {/* CTA button on desktop */}
-          <div className="hidden lg:flex items-center mr-3 sm:mr-10">
-            <Link
-              to="/pricing#pricingsection"
-              className="bg-red-800 hover:bg-red-700 text-white px-5 py-1 rounded-md text-lg font-medium transition-colors"
-            >
-              Get Started
-            </Link>
-          </div>
+            {/* Links (Desktop) */}
+            <div className="hidden lg:flex flex-1 justify-center items-center gap-5">
+              <NavLinks />
+            </div>
 
-          {/* Mobile Menu Button */}
-          <div className="lg:hidden flex items-center mr-5">
-            <button
-              onClick={() => setMobileMenuOpen(true)}
-              className="text-red-800 text-2xl focus:outline-none"
-            >
-              <FaBars />
-            </button>
+            {/* CTA button on desktop */}
+            <div className="hidden lg:flex items-center mr-3 sm:mr-10">
+              <CtaButton />
+            </div>
+
+            {/* Mobile Menu Button */}
+            <div className="lg:hidden flex items-center mr-5">
+              <button
+                onClick={() => setMobileMenuOpen(true)}
+                className="text-red-800 text-2xl focus:outline-none"
+              >
+                <FaBars />
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      </nav>
+
+      {/* Copy Navbar (Fixed after 500px) */}
+      {showFixedNavbar && (
+        <nav
+          className={`fixed top-0 left-0 w-full bg-white shadow-md transition-transform duration-500 z-20 ${
+            scrollDirection === "up" ? "translate-y-0" : "-translate-y-full"
+          }`}
+        >
+          <div className="mx-auto sm:px-6 lg:px-8 max-w-7xl">
+            <div className="flex justify-between items-center h-[75px]">
+              {/* Logo */}
+              <div className="flex-shrink-0">
+                <Link to="/">
+                  <img
+                    src={logo}
+                    alt="Company Logo"
+                    className="h-[90px] w-auto object-contain sm:ml-10"
+                  />
+                </Link>
+              </div>
+
+              {/* Links (Desktop) */}
+              <div className="hidden lg:flex flex-1 justify-center items-center gap-5">
+                <NavLinks />
+              </div>
+
+              {/* CTA button on desktop */}
+              <div className="hidden lg:flex items-center mr-3 sm:mr-10">
+                <CtaButton />
+              </div>
+
+              {/* Mobile Menu Button */}
+              <div className="lg:hidden flex items-center mr-5">
+                <button
+                  onClick={() => setMobileMenuOpen(true)}
+                  className="text-red-800 text-2xl focus:outline-none"
+                >
+                  <FaBars />
+                </button>
+              </div>
+            </div>
+          </div>
+        </nav>
+      )}
 
       {/* Full-Screen Mobile Menu */}
       <div
@@ -111,50 +178,10 @@ const Navbar = () => {
           <FaTimes />
         </button>
 
-        <Link
-          to="/"
-          onClick={() => setMobileMenuOpen(false)}
-          className="text-red-800 hover:text-red-600"
-        >
-          Home
-        </Link>
-        <Link
-          to="/features"
-          onClick={() => setMobileMenuOpen(false)}
-          className="text-red-800 hover:text-red-600"
-        >
-          Features
-        </Link>
-        <Link
-          to="/pricing"
-          onClick={() => setMobileMenuOpen(false)}
-          className="text-red-800 hover:text-red-600"
-        >
-          Pricing
-        </Link>
-        <Link
-          to="/about"
-          onClick={() => setMobileMenuOpen(false)}
-          className="text-red-800 hover:text-red-600"
-        >
-          About Us
-        </Link>
-        <Link
-          to="/contact"
-          onClick={() => setMobileMenuOpen(false)}
-          className="text-red-800 hover:text-red-600"
-        >
-          Contact Us
-        </Link>
-        <Link
-          to="/pricing#pricingsection"
-          onClick={() => setMobileMenuOpen(false)}
-          className="bg-red-800 hover:bg-red-700 text-white px-6 py-3 rounded-md text-lg"
-        >
-          Get Started
-        </Link>
+        <NavLinks closeMenu={() => setMobileMenuOpen(false)} />
+        <CtaButton closeMenu={() => setMobileMenuOpen(false)} />
       </div>
-    </nav>
+    </>
   );
 };
 

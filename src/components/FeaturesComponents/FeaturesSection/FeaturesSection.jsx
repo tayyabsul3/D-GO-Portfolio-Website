@@ -30,7 +30,7 @@ const FeaturesSection = () => {
   }, []);
 
   return (
-    <div ref={sectionRef} className="relative py-16 min-h-screen">
+    <div ref={sectionRef} className="relative py-16 ">
       {/* Top Horizontal Line */}
       <div className="absolute top-0 left-0 right-0 h-1 bg-red-800 z-10 -mt-1"></div>
 
@@ -46,7 +46,7 @@ const FeaturesSection = () => {
       </div>
 
       {/* Content container */}
-      <div className="relative z-10 max-w-7xl mx-auto px-8 mt-16">
+      <div className="relative z-10 max-w-7xl mx-auto px-8 my-10 md:my-16 ">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
           {/* Feature 1 */}
           <div
