@@ -3,17 +3,10 @@ import QRImage from "../../../assets/img/tableQR.jpg"; // Replace with your actu
 
 const JoinUs = () => {
   return (
-    <div className="max-w-7xl mx-auto p-8 bg-white ">
-      <div className="flex flex-col md:flex-row gap-8 items-center mt-20 mb-20">
-        {" "}
-        {/* Added items-center */}
-        {/* Combined content container */}
+    <div className="max-w-[65rem] mx-auto p-8 bg-white ">
+      <div className="flex flex-col  md:flex-row gap-8 items-center mt-20 mb-20">
         <div className=" flex flex-col gap-10 md:flex-row items-center text-center  ">
-          {" "}
-          {/* Centered content */}
-          <div className="mb-8 w-full flex-1">
-            {" "}
-            {/* Full width for centering content */}
+          <div className="mb-8 w-full flex-[1.5]">
             <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-2 text-left">
               Empowering Your Business with Smart POS Solutions
             </h1>
@@ -28,18 +21,15 @@ const JoinUs = () => {
               deliver exceptional customer experiences every day.
             </p>
           </div>
-          <div className=" flex-1 w-80 h-80 flex items-end justify-center mt-4 ">
-            {" "}
-            {/* Changed to items-end and added mt-4 */}
+          <div className=" flex-1 h-[400px] mt-4 ">
             <img
               src={QRImage}
               alt="QR Code Ordering System"
               className="w-full h-full object-cover rounded-xl shadow-lg"
-              style={{ borderRadius: "40px" }} // More rounded corners
+              style={{ borderRadius: "40px" }}
             />
           </div>
         </div>
-        {/* Right side - Image */}
       </div>
     </div>
   );

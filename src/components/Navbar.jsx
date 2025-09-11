@@ -1,16 +1,37 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
 import logo from "../assets/D-Go.png";
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [showNavbar, setShowNavbar] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
+  // Scroll handler
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > lastScrollY) {
+        // scrolling down
+        setShowNavbar(false);
+      } else {
+        // scrolling up
+        setShowNavbar(true);
+      }
+      setLastScrollY(window.scrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
   return (
-    <nav className="bg-white max-w-7xl mx-auto relative">
-      <div className="mx-auto sm:px-6 lg:px-8">
+    <nav
+      className={`${
+        lastScrollY > 500 && "fixed w-full  transition-all  z-20"
+      } bg-white  mx-auto transition-all static top-0 `}
+    >
+      <div className={`mx-auto sm:px-6 lg:px-8  max-w-7xl  `}>
         <div className="flex justify-between items-center h-[75px]">
-          {/* Logo */}
           <div className="flex-shrink-0">
             <Link to="/">
               <img
@@ -21,7 +42,6 @@ const Navbar = () => {
             </Link>
           </div>
 
-          {/* Desktop Navigation */}
           <div className="hidden lg:flex flex-1 justify-center items-center gap-5">
             <Link
               to="/"

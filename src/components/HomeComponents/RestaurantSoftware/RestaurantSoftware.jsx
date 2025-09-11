@@ -56,7 +56,7 @@ const RestaurantSoftware = () => {
       className="py-16 px-4 sm:px-6 lg:px-8"
       style={{ backgroundColor: "rgb(248, 245, 240)" }}
     >
-      <div className="max-w-7xl my-10 mx-auto px-4">
+      <div className="max-w-7xl  my-10 mx-auto px-4 ">
         {/* Header Section */}
         <div className="text-center mb-12">
           <h1 className="text-3xl sm:text-[2.5rem] font-bold text-gray-900 mb-4">
@@ -69,7 +69,7 @@ const RestaurantSoftware = () => {
         </div>
 
         {/* Content Row */}
-        <div className="flex flex-col-reverse lg:flex-row items-center gap-12 ">
+        <div className="flex lg:pl-28 flex-col-reverse lg:flex-row items-center gap-12 md:gap-20 ">
           {/* Left Features */}
           <div className="lg:w-1/2">
             <div className="flex flex-col gap-12">

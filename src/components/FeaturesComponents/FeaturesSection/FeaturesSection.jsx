@@ -51,7 +51,7 @@ const FeaturesSection = () => {
           {/* Feature 1 */}
           <div
             data-feature-card
-            className="bg-red-800 bg-opacity-90 p-8 sm:p-16 lg:p-14 h-fit rounded-2xl shadow-lg"
+            className="bg-red-800 bg-opacity-90 p-8 sm:p-16 lg:p-14 h-full rounded-2xl shadow-lg"
           >
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
               Custom Branding
@@ -72,7 +72,7 @@ const FeaturesSection = () => {
           {/* Feature 2 */}
           <div
             data-feature-card
-            className="bg-red-800 bg-opacity-90 p-8 sm:p-16 lg:p-14 h-fit rounded-2xl shadow-lg"
+            className="bg-red-800 bg-opacity-90 p-8 sm:p-16 lg:p-14 h-full rounded-2xl shadow-lg"
           >
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
               Order & Inventory
@@ -85,14 +85,14 @@ const FeaturesSection = () => {
               stand out and making a lasting impression on customers.
               Customizing your menu not only strengthens brand recognition but
               also enhances the overall experience, encouraging loyalty and
-              repeat visits—all without needing any design skills.
+              repeat visits all without needing any design skills.
             </p>
           </div>
 
           {/* Feature 3 */}
           <div
             data-feature-card
-            className="bg-red-800 bg-opacity-90 p-8 sm:p-16 lg:p-14 h-fit rounded-2xl shadow-lg"
+            className="bg-red-800 bg-opacity-90 p-8 sm:p-16 lg:p-14 h-full rounded-2xl shadow-lg"
           >
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
               Digital Experience
