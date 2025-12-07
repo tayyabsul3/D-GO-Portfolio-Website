@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import CenterImage from "../../../assets/Aboutus/Circle.png";
-import CenterInnerImage from "../../../assets/Aboutus/inside-Circle.png";
+import CenterInnerImage from "../../../assets/Aboutus/inside-circle.png";
 import BackgroundImage from "../../../assets/Aboutus/Background.png";
 import Image1 from "../../../assets/Aboutus/img1.png";
 import Image2 from "../../../assets/Aboutus/img2.png";
