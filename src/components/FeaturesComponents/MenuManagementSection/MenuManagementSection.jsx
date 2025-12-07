@@ -3,7 +3,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import MenuManagementImage from "../../../assets/Roles/Role1.jpg";
 import UserRolesImage from "../../../assets/Roles/Role2.jpg";
-import BackgroundImage from "../../../assets/Roles/background.png";
+import BackgroundImage from "../../../assets/Roles/Background.png";
 import { FaPhone, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 
 gsap.registerPlugin(ScrollTrigger);
